@@ -1,12 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Home</title>
-<link rel='stylesheet' href='css/styles.css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relationship Website</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<include src='partials/header.html'></include>
-<h1>Welcome to Our Relationship Website</h1>
-<include src='partials/footer.html'></include>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="memories.html">Memories</a>
+      <a href="future.html">Future</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hero">
+      <h1>Our Relationship</h1>
+      <p>Celebrating the journey we've shared together.</p>
+      <a href="about.html" class="btn">Learn More</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="img/about-us.jpg" alt="About Us" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h2>About Our Relationship</h2>
+            <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years.</p>
+            <a href="about.html" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="memories">
+      <div class="container">
+        <h2>Our Memories</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <img src="img/memories-1.jpg" alt="Memory 1" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <img src="img/memories-2.jpg" alt="Memory 2" class="img-fluid">
+          </div>
+        </div>
+        <a href="memories.html" class="btn">View More</a>
+      </div>
+    </section>
+
+    <section class="future">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Our Future</h2>
+            <p>As we look ahead, we're excited to continue building our life together. From starting a family to traveling the world, we have so many plans in store.</p>
+            <a href="future.html" class="btn">Learn More</a>
+          </div>
+          <div class="col-md-6">
+            <img src="img/future-plans.jpg" alt="Future Plans" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Relationship Website. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
