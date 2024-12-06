@@ -5,54 +5,245 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relationship Website</title>
   <style>
+    :root {
+      --aero-blue: #7CB9E8;
+      --aero-gray: #B0C4DE;
+      --aero-dark: #4169E1;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #7CB9E8;
+      background-color: var(--aero-blue);
     }
 
-    #loading {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #7CB9E8;
+    header {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    header video {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    nav {
       display: flex;
       justify-content: center;
-      align-items: center;
-      z-index: 9999;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
     }
 
-    .loading-spinner {
-      border: 4px solid #4169E1;
-      border-top-color: transparent;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
+    nav a {
+      color: var(--aero-gray);
+      text-decoration: none;
+      margin: 0 20px;
     }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--aero-gray);
+      padding: 50px 0;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--aero-dark);
+      color: var(--aero-gray);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -20px;
+    }
+
+    .col-md-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 20px;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
+
+    .memories .row > div {
+      display: none;
+    }
+
+    .memories .row > div.active {
+      display: block;
+    }
+
+    footer {
+      background-color: var(--aero-dark);
+      color: var(--aero-gray);
+      text-align: center;
+      padding: 20px 0;
     }
   </style>
 </head>
 <body>
-  <div id="loading">
-    <div class="loading-spinner"></div>
-  </div>
+  <header>
+    <video autoplay loop muted>
+      <source src="vid/header.mp4" type="video/mp4">
+    </video>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Memories</a>
+      <a href="#">Future</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="hero">
+      <h1>Our Relationship</h1>
+      <p>Celebrating the journey we've shared together.</p>
+      <a href="#" class="btn">Learn More</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 fade-in">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/aero" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in">
+            <h2>About Our Relationship</h2>
+            <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="memories">
+      <div class="container">
+        <h2>Our Memories</h2>
+        <div class="row">
+          <div class="col-md-6 active">
+            <img src="img/memories-1.jpg" alt="Memory 1" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <img src="img/memories-2.jpg" alt="Memory 2" class="img-fluid">
+          </div>
+        </div>
+        <a href="#" class="btn">View More</a>
+      </div>
+    </section>
+
+    <section class="future">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 fade-in">
+            <h2>Our Future</h2>
+            <p>As we look ahead, we're excited to continue building our life together. From starting a family to traveling the world, we have so many plans in store.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+          <div class="col-md-6 fade-in">
+            <img src="img/future-plans.jpg" alt="Future Plans" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Relationship Website. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
-    window.addEventListener('load', function() {
-      const loadingEl = document.getElementById('loading');
-      loadingEl.style.display = 'none';
-      setTimeout(function() {
-        window.location.href = 'src/lobby.html';
-      }, 5000);
+    const sectionLinks = document.querySelectorAll('nav a');
+    sectionLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
     });
+
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    fadeInElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    const carouselItems = document.querySelectorAll('.memories .row > div');
+    let currentIndex = 0;
+
+    function showCarouselItem(index) {
+      carouselItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      showCarouselItem(currentIndex);
+    }, 5000);
+
+    showCarouselItem(currentIndex);
   </script>
 </body>
 </html>
