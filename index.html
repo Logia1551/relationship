@@ -5,247 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relationship Website</title>
   <style>
-    /* Palet Utama */
     :root {
-      --romantic-rose: #FF6F91;
-      --soft-peach: #FFD1DC;
-      --dreamy-lavender: #B28DFF;
-      --minty-fresh: #A8E6CF;
-      --golden-glow: #FFD700;
-    }
-
-    /* Palet Pendukung */
-    :root {
-      --pure-white: #FFFFFF;
-      --gentle-gray: #F5F5F5;
-      --charcoal-black: #333333;
-    }
-
-    /* Gradien untuk Elemen Khusus */
-    .sunset-bliss {
-      background: linear-gradient(90deg, var(--romantic-rose), var(--soft-peach));
-    }
-    .heavenly-hues {
-      background: linear-gradient(90deg, var(--minty-fresh), var(--dreamy-lavender));
+      --aero-blue: #7CB9E8;
+      --aero-gray: #B0C4DE;
+      --aero-dark: #4169E1;
     }
 
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: var(--pure-white);
+      background-color: var(--aero-blue);
     }
 
-    header {
-      background-image: url('img/header-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      color: var(--pure-white);
-      padding: 50px 0;
-    }
-
-    nav {
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--aero-blue);
       display: flex;
       justify-content: center;
-      margin-bottom: 30px;
+      align-items: center;
+      z-index: 9999;
     }
 
-    nav a {
-      color: var(--pure-white);
-      text-decoration: none;
-      margin: 0 20px;
+    .loading-heart {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      animation: heartbeat 1s infinite;
     }
 
-    .hero {
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: var(--romantic-rose);
-      color: var(--pure-white);
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin: -20px;
-    }
-
-    .col-md-6 {
-      flex: 0 0 50%;
-      max-width: 50%;
-      padding: 20px;
-    }
-
-    .img-fluid {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-    }
-
-    .memories .row > div {
-      display: none;
-    }
-
-    .memories .row > div.active {
+    .heart-beat span {
       display: block;
+      width: 20px;
+      height: 20px;
+      background-color: var(--aero-dark);
+      position: absolute;
+      animation: heartbeat 1s infinite;
     }
 
-    footer {
-      background-color: var(--charcoal-black);
-      color: var(--pure-white);
-      text-align: center;
-      padding: 20px 0;
+    .heart-beat span:nth-child(1) {
+      top: 0;
+      left: 0;
+      animation-delay: 0.1s;
+    }
+    .heart-beat span:nth-child(2) {
+      top: 0;
+      right: 0;
+      animation-delay: 0.3s;
+    }
+    .heart-beat span:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      animation-delay: 0.5s;
+    }
+    .heart-beat span:nth-child(4) {
+      bottom: 0;
+      right: 0;
+      animation-delay: 0.7s;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Memories</a>
-      <a href="#">Future</a>
-      <a href="#">Contact</a>
-    </nav>
-    <div class="hero">
-      <h1>Our Relationship</h1>
-      <p>Celebrating the journey we've shared together.</p>
-      <a href="#" class="btn">Learn More</a>
+  <div id="loading">
+    <div class="loading-heart">
+      <div class="heart-beat">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <section class="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 fade-in">
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/aero" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="col-md-6 fade-in">
-            <h2>About Our Relationship</h2>
-            <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="memories">
-      <div class="container">
-        <h2>Our Memories</h2>
-        <div class="row">
-          <div class="col-md-6 active">
-            <img src="img/memories-1.jpg" alt="Memory 1" class="img-fluid">
-          </div>
-          <div class="col-md-6">
-            <img src="img/memories-2.jpg" alt="Memory 2" class="img-fluid">
-          </div>
-        </div>
-        <a href="#" class="btn">View More</a>
-      </div>
-    </section>
-
-    <section class="future">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 fade-in">
-            <h2>Our Future</h2>
-            <p>As we look ahead, we're excited to continue building our life together. From starting a family to traveling the world, we have so many plans in store.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-          <div class="col-md-6 fade-in">
-            <img src="img/future-plans.jpg" alt="Future Plans" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2023 Relationship Website. All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // Smooth scrolling to section links
-    const sectionLinks = document.querySelectorAll('nav a');
-    sectionLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-      });
+    window.addEventListener('load', function() {
+      const loadingEl = document.getElementById('loading');
+      loadingEl.style.display = 'none';
+      window.location.href = 'lobby.html';
     });
-
-    // Fade in animations
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    fadeInElements.forEach(element => {
-      observer.observe(element);
-    });
-
-    // Carousel for memories section
-    const carouselItems = document.querySelectorAll('.memories .row > div');
-    let currentIndex = 0;
-
-    function showCarouselItem(index) {
-      carouselItems.forEach((item, i) => {
-        if (i === index) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
-    }
-
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % carouselItems.length;
-      showCarouselItem(currentIndex);
-    }, 5000);
-
-    showCarouselItem(currentIndex);
   </script>
 </body>
 </html>

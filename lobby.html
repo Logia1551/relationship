@@ -5,42 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relationship Website</title>
   <style>
-    /* Palet Utama */
     :root {
-      --romantic-rose: #FF6F91;
-      --soft-peach: #FFD1DC;
-      --dreamy-lavender: #B28DFF;
-      --minty-fresh: #A8E6CF;
-      --golden-glow: #FFD700;
-    }
-
-    /* Palet Pendukung */
-    :root {
-      --pure-white: #FFFFFF;
-      --gentle-gray: #F5F5F5;
-      --charcoal-black: #333333;
-    }
-
-    /* Gradien untuk Elemen Khusus */
-    .sunset-bliss {
-      background: linear-gradient(90deg, var(--romantic-rose), var(--soft-peach));
-    }
-    .heavenly-hues {
-      background: linear-gradient(90deg, var(--minty-fresh), var(--dreamy-lavender));
+      --aero-blue: #7CB9E8;
+      --aero-gray: #B0C4DE;
+      --aero-dark: #4169E1;
     }
 
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: var(--pure-white);
+      background-color: var(--aero-blue);
     }
 
     header {
       background-image: url('img/header-bg.jpg');
       background-size: cover;
       background-position: center;
-      color: var(--pure-white);
+      color: var(--aero-gray);
       padding: 50px 0;
     }
 
@@ -51,7 +33,7 @@
     }
 
     nav a {
-      color: var(--pure-white);
+      color: var(--aero-gray);
       text-decoration: none;
       margin: 0 20px;
     }
@@ -72,8 +54,8 @@
 
     .btn {
       display: inline-block;
-      background-color: var(--romantic-rose);
-      color: var(--pure-white);
+      background-color: var(--aero-dark);
+      color: var(--aero-gray);
       text-decoration: none;
       padding: 10px 20px;
       border-radius: 5px;
@@ -120,8 +102,8 @@
     }
 
     footer {
-      background-color: var(--charcoal-black);
-      color: var(--pure-white);
+      background-color: var(--aero-dark);
+      color: var(--aero-gray);
       text-align: center;
       padding: 20px 0;
     }
@@ -199,7 +181,6 @@
   </footer>
 
   <script>
-    // Smooth scrolling to section links
     const sectionLinks = document.querySelectorAll('nav a');
     sectionLinks.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -210,7 +191,6 @@
       });
     });
 
-    // Fade in animations
     const fadeInElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -226,7 +206,6 @@
       observer.observe(element);
     });
 
-    // Carousel for memories section
     const carouselItems = document.querySelectorAll('.memories .row > div');
     let currentIndex = 0;
 
