@@ -4,21 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relationship Website</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-image: url('img/header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 50px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -20px;
+    }
+
+    .col-md-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 20px;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
+
+    .memories .row > div {
+      display: none;
+    }
+
+    .memories .row > div.active {
+      display: block;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="memories.html">Memories</a>
-      <a href="future.html">Future</a>
-      <a href="contact.html">Contact</a>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Memories</a>
+      <a href="#">Future</a>
+      <a href="#">Contact</a>
     </nav>
     <div class="hero">
       <h1>Our Relationship</h1>
       <p>Celebrating the journey we've shared together.</p>
-      <a href="about.html" class="btn">Learn More</a>
+      <a href="#" class="btn">Learn More</a>
     </div>
   </header>
 
@@ -26,13 +122,13 @@
     <section class="about">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 fade-in">
             <img src="img/about-us.jpg" alt="About Us" class="img-fluid">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 fade-in">
             <h2>About Our Relationship</h2>
             <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years.</p>
-            <a href="about.html" class="btn">Learn More</a>
+            <a href="#" class="btn">Learn More</a>
           </div>
         </div>
       </div>
@@ -42,26 +138,26 @@
       <div class="container">
         <h2>Our Memories</h2>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 active">
             <img src="img/memories-1.jpg" alt="Memory 1" class="img-fluid">
           </div>
           <div class="col-md-6">
             <img src="img/memories-2.jpg" alt="Memory 2" class="img-fluid">
           </div>
         </div>
-        <a href="memories.html" class="btn">View More</a>
+        <a href="#" class="btn">View More</a>
       </div>
     </section>
 
     <section class="future">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 fade-in">
             <h2>Our Future</h2>
             <p>As we look ahead, we're excited to continue building our life together. From starting a family to traveling the world, we have so many plans in store.</p>
-            <a href="future.html" class="btn">Learn More</a>
+            <a href="#" class="btn">Learn More</a>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 fade-in">
             <img src="img/future-plans.jpg" alt="Future Plans" class="img-fluid">
           </div>
         </div>
@@ -75,6 +171,54 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    // Smooth scrolling to section links
+    const sectionLinks = document.querySelectorAll('nav a');
+    sectionLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Fade in animations
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    fadeInElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // Carousel for memories section
+    const carouselItems = document.querySelectorAll('.memories .row > div');
+    let currentIndex = 0;
+
+    function showCarouselItem(index) {
+      carouselItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      showCarouselItem(currentIndex);
+    }, 5000);
+
+    showCarouselItem(currentIndex);
+  </script>
 </body>
 </html>
