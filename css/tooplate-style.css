@@ -97,9 +97,18 @@ p {
   width: 165px;
   height: 165px;
   text-align: center;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
   position: relative;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.tm-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .tm-nav-text {
@@ -107,6 +116,24 @@ p {
   left: 0;
   right: 0;
   bottom: 10px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.tm-nav-link:hover .tm-nav-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tm-nav-icon {
+  display: block;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.tm-nav-link:hover .tm-nav-icon {
+  transform: scale(1.1);
 }
 
 .fa-3x { font-size: 2.5em; }
