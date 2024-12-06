@@ -126,6 +126,38 @@
       transform: translateX(0);
     }
 
+    .service-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+    }
+
+    .service-box {
+      background-color: var(--accent-color);
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      width: 30%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .service-box h3 {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+
+    .service-box p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
     footer {
       background-color: var(--accent-color);
       color: var(--background-color);
@@ -169,6 +201,29 @@
         </div>
         <div class="col-md-6 fade-in">
           <img src="img/about-us.jpg" alt="About Us" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="our-relationship">
+    <div class="container">
+      <h2>Our Relationship</h2>
+      <div class="service-container">
+        <div class="service-box">
+          <img src="img/memory.jpg" alt="Memory">
+          <h3>Cherished Memories</h3>
+          <p>We have created countless memories that we hold dear.</p>
+        </div>
+        <div class="service-box">
+          <img src="img/plan.jpg" alt="Future Plans">
+          <h3>Future Plans</h3>
+          <p>We are excited to continue building our life together.</p>
+        </div>
+        <div class="service-box">
+          <img src="img/partnership.jpg" alt="Partnership">
+          <h3>True Partnership</h3>
+          <p>Our relationship is built on mutual respect and trust.</p>
         </div>
       </div>
     </div>
