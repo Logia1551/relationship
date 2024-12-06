@@ -115,23 +115,15 @@
       height: auto;
     }
 
-    .fade-in {
+    .about-section {
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateX(-100%);
       transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
-    .fade-in.visible {
+    .about-section.visible {
       opacity: 1;
-      transform: translateY(0);
-    }
-
-    .memories .row > div {
-      display: none;
-    }
-
-    .memories .row > div.active {
-      display: block;
+      transform: translateX(0);
     }
 
     footer {
@@ -166,52 +158,21 @@
     </div>
   </header>
 
-  <main>
-    <section class="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 fade-in">
-            <h2>About Our Relationship</h2>
-            <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-          <div class="col-md-6 fade-in">
-            <img src="img/about-us.jpg" alt="About Us" class="img-fluid">
-          </div>
+  <section class="about-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 fade-in">
+          <h2>About Our Relationship</h2>
+          <p>We met in college and have been inseparable ever since. Our shared values and love for adventure have guided us through the years. We've created countless memories and are excited to continue building our life together.</p>
+          <p>From starting a family to traveling the world, we have so many plans for the future. Our relationship is a true partnership, built on mutual respect, trust, and a deep, unwavering connection.</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+        <div class="col-md-6 fade-in">
+          <img src="img/about-us.jpg" alt="About Us" class="img-fluid">
         </div>
       </div>
-    </section>
-
-    <section class="memories">
-      <div class="container">
-        <h2>Our Memories</h2>
-        <div class="row">
-          <div class="col-md-6 active">
-            <img src="img/memories-1.jpg" alt="Memory 1" class="img-fluid">
-          </div>
-          <div class="col-md-6">
-            <img src="img/memories-2.jpg" alt="Memory 2" class="img-fluid">
-          </div>
-        </div>
-        <a href="#" class="btn">View More</a>
-      </div>
-    </section>
-
-    <section class="future">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 fade-in">
-            <h2>Our Future</h2>
-            <p>As we look ahead, we're excited to continue building our life together. From starting a family to traveling the world, we have so many plans in store.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-          <div class="col-md-6 fade-in">
-            <img src="img/future-plans.jpg" alt="Future Plans" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
     <div class="container">
@@ -230,40 +191,18 @@
       });
     });
 
-    const fadeInElements = document.querySelectorAll('.fade-in');
+    const aboutSection = document.querySelector('.about-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          aboutSection.classList.add('visible');
         }
       });
     }, {
       threshold: 0.5
     });
 
-    fadeInElements.forEach(element => {
-      observer.observe(element);
-    });
-
-    const carouselItems = document.querySelectorAll('.memories .row > div');
-    let currentIndex = 0;
-
-    function showCarouselItem(index) {
-      carouselItems.forEach((item, i) => {
-        if (i === index) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
-    }
-
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % carouselItems.length;
-      showCarouselItem(currentIndex);
-    }, 5000);
-
-    showCarouselItem(currentIndex);
+    observer.observe(aboutSection);
   </script>
 </body>
 </html>
