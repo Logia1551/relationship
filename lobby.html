@@ -19,17 +19,29 @@
     }
 
     header {
-      background-image: url('img/header-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      color: var(--aero-gray);
-      padding: 50px 0;
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    header video {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
     }
 
     nav {
       display: flex;
       justify-content: center;
       margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
     }
 
     nav a {
@@ -39,7 +51,11 @@
     }
 
     .hero {
+      position: relative;
+      z-index: 1;
       text-align: center;
+      color: var(--aero-gray);
+      padding: 50px 0;
     }
 
     .hero h1 {
@@ -111,6 +127,9 @@
 </head>
 <body>
   <header>
+    <video autoplay loop muted>
+      <source src="video/header.mp4" type="video/mp4">
+    </video>
     <nav>
       <a href="#">Home</a>
       <a href="#">About</a>
