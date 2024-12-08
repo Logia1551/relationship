@@ -120,18 +120,18 @@
                                 <div class="memory-content">
                                     <div class="memory-header">
                                         <h4>August 2024</h4>
-                                        <span>Awal Mula</span>
+                                        <span>The Beginning</span>
                                     </div>
                                     <a href="pages/august2024.html" class="memory-image-link">
                                         <div class="memory-image">
-                                            <img src="img/1.jpg" alt="August Memory">
+                                            <img src="img/august.jpg" alt="August Memory">
                                             <div class="memory-hover">
                                                 <span>View Details</span>
                                             </div>
                                         </div>
                                     </a>
                                     <div class="memory-info">
-                                        <p>Awal mula dari sebuah hubungan</p>
+                                        <p>It's Begin in August 2024</p>
                                     </div>
                                 </div>
                             </div>
@@ -226,44 +226,46 @@
     </div>
 </div>
 
-                                <div class="grid__item">
-                                    <div class="product">
-                                        <div class="tm-nav-link">
-                                            <i class="fas fa-comments fa-3x tm-nav-icon"></i>
-                                            <span class="tm-nav-text">Contact</span>
-                                            <div class="product__bg"></div>             
-                                        </div>                                                              
-                                        <div class="product__description">
-                                            <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
-                                                <div class="row mb-3">
-                                                    <div class="col-12">
-                                                        <h2 class="tm-page-title">Contact Us</h2>        
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-12">
-                                                        <p>Lorem ipsum dolor site amet, consectetur adipiscing elit. Aliquam interdum, nisl sed faucibus tempor, massa velit laoreet ipsum, et faucibus sapien magna at enim. Suspendisse a dictum tortor, vel rhoncus libero.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <form action="index.html" method="post" class="contact-form">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                                                                  <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
-                                                                </div>
-                                                                <div class="form-group col-md-6 col-lg-6 col-xl-6 tm-col-email">
-                                                                  <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email"  required/>
-                                                                </div>
-                                                            </div>                                                        
-                                                            <div class="form-group">
-                                                              <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="Message" required></textarea>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary tm-btn-submit">Submit</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>                                            
+<div class="grid__item">
+    <div class="product">
+        <div class="tm-nav-link">
+            <i class="fas fa-heart fa-3x tm-nav-icon"></i>
+            <span class="tm-nav-text">Wishes</span>
+            <div class="product__bg"></div>             
+        </div>                                                              
+        <div class="product__description">
+            <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <h2 class="tm-page-title">Share Your Wishes</h2>        
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <p>Sampaikan harapan dan doa terbaik Anda untuk kami!</p>
+                    </div>
+                </div>
+                <div class="row wishes-container">
+                    <!-- Wish bubbles will be dynamically added here -->
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form id="wish-form" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="wish-name" name="wish-name" class="form-control" placeholder="Masukkan Nama" required />
+                            </div>
+                            <div class="form-group">
+                                <textarea id="wish-message" name="wish-message" class="form-control" rows="3" placeholder="Tulis Harapan Anda" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary tm-btn-submit">Kirim</button>
+                        </form>
+                    </div>
+                </div>
+            </div>                                            
+        </div>
+    </div>
+</div>
+                                         
                                         </div>
                                     </div>
                                 </div>
@@ -282,6 +284,68 @@
 <script src="slick/slick.min.js"></script>                  
 <script src="js/anime.min.js"></script>                     
 <script src="js/main.js"></script>  
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-E7VelRL-IeYgEw0OMmDLLK5BP_-3v0g",
+    authDomain: "releationship-a6aa5.firebaseapp.com",
+    projectId: "releationship-a6aa5",
+    storageBucket: "releationship-a6aa5.firebasestorage.app",
+    messagingSenderId: "279962290335",
+    appId: "1:279962290335:web:1840649e82a5c427547aaa",
+    measurementId: "G-TL2RF06RBH"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const wishesRef = ref(database, 'wishes');
+
+  // Add event listener for wish form submission
+  const wishForm = document.getElementById('wish-form');
+  wishForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nameInput = document.getElementById('wish-name');
+    const messageInput = document.getElementById('wish-message');
+
+    // Save wish data to Firebase
+    push(wishesRef, {
+      name: nameInput.value,
+      message: messageInput.value
+    }).then(() => {
+      nameInput.value = '';
+      messageInput.value = '';
+      alert('Terima kasih atas harapan Anda!');
+    });
+  });
+
+  // Fetch wish data from Firebase and display on the page
+  onValue(wishesRef, function(snapshot) {
+    const wishesContainer = document.querySelector('.wishes-container');
+    wishesContainer.innerHTML = '';
+
+    snapshot.forEach(function(childSnapshot) {
+      const wish = childSnapshot.val();
+      const wishElement = document.createElement('div');
+      wishElement.classList.add('wish-bubble');
+      wishElement.innerHTML = `
+        <div class="wish-header">
+          <h5>${wish.name}</h5>
+        </div>
+        <div class="wish-message">
+          <p>${wish.message}</p>
+        </div>
+      `;
+      wishesContainer.appendChild(wishElement);
+    });
+  });
+</script>
 <script>      
     function setupFooter() {
         var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
