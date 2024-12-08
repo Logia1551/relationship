@@ -357,6 +357,29 @@ onValue(wishesRef, function(snapshot) {
   });
 });
 
+// Fetch wish data from Firebase and display on the page
+onValue(wishesRef, function(snapshot) {
+  const wishesContainer = document.querySelector('.wishes-container');
+  console.log('Fetching wishes from Firebase...');
+
+  snapshot.forEach(function(childSnapshot) {
+    const wish = childSnapshot.val();
+    console.log('Wish received:', wish);
+
+    const wishElement = document.createElement('div');
+    wishElement.classList.add('wish-bubble');
+    wishElement.innerHTML = `
+      <div class="wish-header">
+        <h5>${wish.name}</h5>
+      </div>
+      <div class="wish-message">
+        <p>${wish.message}</p>
+      </div>
+    `;
+    wishesContainer.appendChild(wishElement);
+  });
+});
+
     function setupFooter() {
         var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
         var main = $('.tm-main-content');
