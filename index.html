@@ -16,6 +16,31 @@
 
     <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
     
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+    
+        // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+      apiKey: "AIzaSyB-E7VelRL-IeYgEw0OMmDLLK5BP_-3v0g",
+      authDomain: "releationship-a6aa5.firebaseapp.com",
+      projectId: "releationship-a6aa5",
+      storageBucket: "releationship-a6aa5.firebasestorage.app",
+      messagingSenderId: "279962290335",
+      appId: "1:279962290335:web:1840649e82a5c427547aaa",
+      measurementId: "G-TL2RF06RBH"
+    };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const wishesRef = ref(database, 'wishes');
+
+    </script>
+      
 </head>
 
 <body>
@@ -284,69 +309,54 @@
 <script src="slick/slick.min.js"></script>                  
 <script src="js/anime.min.js"></script>                     
 <script src="js/main.js"></script>  
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
-    // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-E7VelRL-IeYgEw0OMmDLLK5BP_-3v0g",
-    authDomain: "releationship-a6aa5.firebaseapp.com",
-    projectId: "releationship-a6aa5",
-    storageBucket: "releationship-a6aa5.firebasestorage.app",
-    messagingSenderId: "279962290335",
-    appId: "1:279962290335:web:1840649e82a5c427547aaa",
-    measurementId: "G-TL2RF06RBH"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const database = getDatabase(app);
-  const wishesRef = ref(database, 'wishes');
-
-  // Add event listener for wish form submission
-  const wishForm = document.getElementById('wish-form');
-  wishForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nameInput = document.getElementById('wish-name');
-    const messageInput = document.getElementById('wish-message');
-
-    // Save wish data to Firebase
-    push(wishesRef, {
-      name: nameInput.value,
-      message: messageInput.value
-    }).then(() => {
-      nameInput.value = '';
-      messageInput.value = '';
-      alert('Terima kasih atas harapan Anda!');
-    });
-  });
-
-  // Fetch wish data from Firebase and display on the page
-  onValue(wishesRef, function(snapshot) {
-    const wishesContainer = document.querySelector('.wishes-container');
-    wishesContainer.innerHTML = '';
-
-    snapshot.forEach(function(childSnapshot) {
-      const wish = childSnapshot.val();
-      const wishElement = document.createElement('div');
-      wishElement.classList.add('wish-bubble');
-      wishElement.innerHTML = `
-        <div class="wish-header">
-          <h5>${wish.name}</h5>
-        </div>
-        <div class="wish-message">
-          <p>${wish.message}</p>
-        </div>
-      `;
-      wishesContainer.appendChild(wishElement);
-    });
-  });
-</script>
 <script>      
+// Add event listener for wish form submission
+const wishForm = document.getElementById('wish-form');
+wishForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nameInput = document.getElementById('wish-name');
+  const messageInput = document.getElementById('wish-message');
+
+  // Save wish data to Firebase
+  push(wishesRef, {
+    name: nameInput.value,
+    message: messageInput.value
+  })
+  .then(() => {
+    console.log('Wish saved successfully');
+    nameInput.value = '';
+    messageInput.value = '';
+    alert('Terima kasih atas harapan Anda!');
+  })
+  .catch((error) => {
+    console.error('Error saving wish:', error);
+  });
+});
+
+// Fetch wish data from Firebase and display on the page
+onValue(wishesRef, function(snapshot) {
+  const wishesContainer = document.querySelector('.wishes-container');
+  console.log('Fetching wishes from Firebase...');
+
+  snapshot.forEach(function(childSnapshot) {
+    const wish = childSnapshot.val();
+    console.log('Wish received:', wish);
+
+    const wishElement = document.createElement('div');
+    wishElement.classList.add('wish-bubble');
+    wishElement.innerHTML = `
+      <div class="wish-header">
+        <h5>${wish.name}</h5>
+      </div>
+      <div class="wish-message">
+        <p>${wish.message}</p>
+      </div>
+    `;
+    wishesContainer.appendChild(wishElement);
+  });
+});
+
     function setupFooter() {
         var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
         var main = $('.tm-main-content');
